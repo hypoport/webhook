@@ -22,7 +22,7 @@
         {
           "match": {
             "type": "value",
-            "value": "changeit",
+            "value": "{{ getenv "WEBHOOK_AUTH" | js }}",
             "parameter": {
               "source": "url",
               "name": "auth"

@@ -1,9 +1,15 @@
 # webhook
 Listens for Webhook requests
 
-`./webhook -hooks hooks.json -port 9000 -verbose`
+```
+    export WEBHOOK_AUTH=changeit; webhook -port 9000 -hooks hooks.json -template -verbose
+```
 
-`curl -X POST "http://***REMOVED***:9000/hooks/test-hook" -H "Content-Type: application/json" -d@docker-hub/example-payload.json`
+```
+    curl -X POST "http://***REMOVED***:9000/hooks/test-hook?auth=changeit" \
+         -H "Content-Type: application/json" \
+         -d@docker-hub/example-payload.json
+```
 
 ## Trigger build on teamcity via api
 
