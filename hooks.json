@@ -1,0 +1,7 @@
+[
+    {
+      "id": "test-hook",
+      "execute-command": "/root/test-command.sh",
+      "command-working-directory": "/root"
+    }
+]
