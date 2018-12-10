@@ -1,5 +1,5 @@
 <build>
-  <buildType  id="pku_ExplorationDay_WebhookTest"/>
+  <buildType id="pku_ExplorationDay_WebhookTest"/>
   <properties>
     <property name="repo" value="foo/bar" />
     <property name="tag" value="latest" />

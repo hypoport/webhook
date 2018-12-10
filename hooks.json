@@ -11,7 +11,25 @@
       {
         "source": "payload",
         "name": "push_data.tag"
+      },
+      {
+        "source": "url",
+        "name": "tcBuildTypeId"
       }
-    ]
+    ],
+    "trigger-rule": {
+      "and": [
+        {
+          "match": {
+            "type": "value",
+            "value": "changeit",
+            "parameter": {
+              "source": "url",
+              "name": "auth"
+            }
+          }
+        }
+      ]
+    }
   }
 ]
