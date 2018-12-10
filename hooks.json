@@ -1,7 +1,17 @@
 [
-    {
-      "id": "test-hook",
-      "execute-command": "/root/test-command.sh",
-      "command-working-directory": "/root"
-    }
+  {
+    "id": "test-hook",
+    "execute-command": "/root/test-command.sh",
+    "command-working-directory": "/root",
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "repository.repo_name"
+      },
+      {
+        "source": "payload",
+        "name": "push_data.tag"
+      }
+    ]
+  }
 ]
