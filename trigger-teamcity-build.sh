@@ -6,7 +6,6 @@ BUILD_TYPE_ID=$3
 
 if [[ "$#" -eq 1 ]]
 then
-  echo "hmmmm"
   eval "ARGUMENTS=($1)"
   REPO=${ARGUMENTS[0]}
   TAG=${ARGUMENTS[1]}
