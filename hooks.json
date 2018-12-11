@@ -38,7 +38,7 @@
     "command-working-directory": "/etc/hooks",
     "pass-arguments-to-command": [
       {
-        "source": "url",
+        "source": "payload",
         "name": "text"
       }
     ],
