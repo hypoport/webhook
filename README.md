@@ -1,6 +1,16 @@
 # webhook
 Listens for Webhook requests
 
+# todo
+
+- [x] Lauschen auf Webhooks, speziell welche vom Docker Hub, wie unter [docs.docker.com](https://docs.docker.com/docker-hub/webhooks/) beschrieben
+- [x] Triggern eines Builds oder Deployments in TeamCity
+- [x] Absichern des Webhooks per "API-Key". Siehe dazu die Doku unter [adnanh/webhook/.../Hook-Rules.md](https://github.com/adnanh/webhook/blob/master/docs/Hook-Rules.md)
+- [ ] HTTPS aktivieren
+- [ ] unsere ip adresse aus git history entfernen, und nur mit Platzhaltern in der Readme dokumentieren
+- [ ] Webhook als Service einrichten, als non-privileged User laufen lassen
+- [ ] Alles in einem Docker-Image kapseln (wie wollen wir mit Updates/temporären Downtimes des Webhooks umgehen?)
+
 ```
     export WEBHOOK_AUTH=changeit; webhook -port 9000 -hooks hooks.json -template -verbose
 ```
@@ -13,7 +23,7 @@ Listens for Webhook requests
 
 ## Trigger build on teamcity via api
 
-Der Guest User in TeamCity braucht die folgenden Rechte, um einen Build anonym triggern zu können:
+The TeamCity guest user needs the following permissions to anonymously trigger a build:
 
 - Customize build parameters
 - Run build
@@ -54,13 +64,3 @@ Der Guest User in TeamCity braucht die folgenden Rechte, um einen Build anonym t
    </properties>
 </build>
 ```
-
-# todo
-
-- [x] Lauschen auf Webhooks, speziell welche vom Docker Hub, wie unter [docs.docker.com](https://docs.docker.com/docker-hub/webhooks/) beschrieben
-- [x] Triggern eines Builds oder Deployments in TeamCity
-- [x] Absichern des Webhooks per "API-Key". Siehe dazu die Doku unter [adnanh/webhook/.../Hook-Rules.md](https://github.com/adnanh/webhook/blob/master/docs/Hook-Rules.md)
-- [ ] HTTPS aktivieren (Let's encrypt?)
-- [ ] unsere ip adresse aus git history entfernen, und nur mit Platzhaltern in der Readme dokumentieren
-- [ ] Webhook als Service einrichten, als non-privileged User laufen lassen
-- [ ] Alles in einem Docker-Image kapseln (wie wollen wir mit Updates/temporären Downtimes des Webhooks umgehen?)
