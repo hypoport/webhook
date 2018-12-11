@@ -1,4 +1,5 @@
 # webhook
+
 Listens for Webhook requests
 
 # todo
@@ -6,17 +7,17 @@ Listens for Webhook requests
 - [x] Lauschen auf Webhooks, speziell welche vom Docker Hub, wie unter [docs.docker.com](https://docs.docker.com/docker-hub/webhooks/) beschrieben
 - [x] Triggern eines Builds oder Deployments in TeamCity
 - [x] Absichern des Webhooks per "API-Key". Siehe dazu die Doku unter [adnanh/webhook/.../Hook-Rules.md](https://github.com/adnanh/webhook/blob/master/docs/Hook-Rules.md)
+- [x] Alles in einem Docker-Image kapseln (wie wollen wir mit Updates/temporären Downtimes des Webhooks umgehen?)
+- [x] als non-privileged User laufen lassen
 - [ ] HTTPS aktivieren
-- [ ] unsere ip adresse aus git history entfernen, und nur mit Platzhaltern in der Readme dokumentieren
-- [ ] Webhook als Service einrichten, als non-privileged User laufen lassen
-- [ ] Alles in einem Docker-Image kapseln (wie wollen wir mit Updates/temporären Downtimes des Webhooks umgehen?)
+- [ ] Webhook als Service einrichten
 
 ```
-    export WEBHOOK_AUTH=changeit; webhook -port 9000 -hooks hooks.json -template -verbose
+    docker run --rm -it --name webhook -p 9000:9000 --env WEBHOOK_AUTH=changeit --env WEBHOOK_SLACK_TOKEN=token -v hooks:/etc/hooks hypoport/webhook:latest
 ```
 
 ```
-    curl -X POST "http://localhost:9000/hooks/test-hook?auth=changeit" \
+    curl -X POST "http://localhost:9000/hooks/docker-hub?auth=changeit" \
          -H "Content-Type: application/json" \
          -d@docker-hub/example-payload.json
 ```
