@@ -21,7 +21,7 @@ LABEL runtime=true
 EXPOSE 9000
 WORKDIR /app
 
-RUN apk add --no-cache ca-certificates \
+RUN apk add --no-cache ca-certificates curl \
     && mkdir /etc/hooks
 
 COPY --from=go-builder /bin/webhook /app/webhook
