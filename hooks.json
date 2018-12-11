@@ -1,6 +1,6 @@
 [
   {
-    "id": "test-hook",
+    "id": "docker-hub",
     "execute-command": "/root/test-command.sh",
     "command-working-directory": "/root",
     "pass-arguments-to-command": [
@@ -26,6 +26,31 @@
             "parameter": {
               "source": "url",
               "name": "auth"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "slack",
+    "execute-command": "/root/test-command.sh",
+    "command-working-directory": "/root",
+    "pass-arguments-to-command": [
+      {
+        "source": "url",
+        "name": "text"
+      }
+    ],
+    "trigger-rule": {
+      "and": [
+        {
+          "match": {
+            "type": "value",
+            "value": "{{ getenv "WEBHOOK_SLACK_TOKEN" | js}}",
+            "parameter": {
+              "source": "url",
+              "name": "token"
             }
           }
         }
