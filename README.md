@@ -4,36 +4,21 @@ Listens for Webhook requests and triggers TeamCity builds.
 
 # todo
 
-- [x] Lauschen auf Webhooks, speziell welche vom Docker Hub, wie unter [docs.docker.com](https://docs.docker.com/docker-hub/webhooks/) beschrieben
-- [x] Lauschen auf Slack messages
-- [x] Triggern eines Builds oder Deployments in TeamCity
-- [x] Absichern des Webhooks per "API-Key". Siehe dazu die Doku unter [adnanh/webhook/.../Hook-Rules.md](https://github.com/adnanh/webhook/blob/master/docs/Hook-Rules.md)
-- [x] HTTPS aktivieren -> HAProxy + Let’s Encrypt
-- [x] Alles in einem Docker-Image kapseln (wie wollen wir mit Updates/temporären Downtimes des Webhooks umgehen?)
-- [x] als non-privileged User laufen lassen (ist im Docker Container vorbereitet)
-- [ ] Webhook als Service einrichten - ggf. als Docker Service (Swarm), damit rolling updates unterbrechungsfrei ermöglicht werden
+- [ ] WEBHOOK_AUTH mit echtem Secret versehen (und in DockerHub anpassen)
+- [ ] Continuous Deployment des Webhooks einrichten (natürlich, indem er das für sich selbst triggert...)
 
 ## Usage
 
-- Prepare a Docker Volume
- 
-Necessary only once or when changes are made on the hooks config.
-This can be skipped, but then the run command below needs to be modified accordingly. 
+- Run the hypoport/webhook container as a service
 
 ```bash
-    docker volume create --name hooks
-    docker run --rm -v hooks:/target -v $(PWD):/source alpine:edge sh -c 'cp -a /source/* /target/'
-```
-
-- Run the hypoport/webhook container
-
-```bash
-    docker run --rm -it \
-        --name webhook \
-        -p 9000:9000 \
-        -e WEBHOOK_AUTH=changeit \
-        -e WEBHOOK_SLACK_TOKEN=token \
-        -v hooks:/etc/hooks hypoport/webhook:latest
+    docker service create \
+      --name webhook \
+      -p 9000:9000 \
+      -e WEBHOOK_AUTH=changeit \
+      -e WEBHOOK_SLACK_TOKEN=<token> \
+      --update-order start-first \
+      hypoport/webhook:latest
 ```
 
 - Manually test the webhook (simulates a Docker Hub Webhook)
