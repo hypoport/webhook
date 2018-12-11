@@ -4,7 +4,6 @@ Listens for Webhook requests and triggers TeamCity builds.
 
 # todo
 
-- [ ] WEBHOOK_AUTH mit echtem Secret versehen (und in DockerHub anpassen)
 - [ ] Continuous Deployment des Webhooks einrichten (natürlich, indem er das für sich selbst triggert...)
 
 ## Usage
@@ -30,9 +29,9 @@ Listens for Webhook requests and triggers TeamCity builds.
 - Manually test the webhook (simulates a Docker Hub Webhook)
 
 ```bash
-    curl -X POST "http://localhost:9000/hooks/docker-hub?tcBuildTypeId=pku_ExplorationDay_WebhookTest&auth=changeit" \
-         -H "Content-Type: application/json" \
-         -d@docker-hub/example-payload.json
+    curl -X POST 'http://localhost:9000/hooks/docker-hub?tcBuildTypeId=pku_ExplorationDay_WebhookTest&auth=<token>' \
+         -H 'Content-Type: application/json' \
+         -d '{"push_data": {"tag": "new-tag"}, "repository": {"repo_name": "repo/name"}}'
 ```
 
 ## Supported Triggers
