@@ -1,8 +1,8 @@
 [
   {
     "id": "docker-hub",
-    "execute-command": "/root/trigger-teamcity-build.sh",
-    "command-working-directory": "/root",
+    "execute-command": "/etc/hooks/trigger-teamcity-build.sh",
+    "command-working-directory": "/etc/hooks",
     "pass-arguments-to-command": [
       {
         "source": "payload",
@@ -34,8 +34,8 @@
   },
   {
     "id": "slack",
-    "execute-command": "/root/trigger-teamcity-build.sh",
-    "command-working-directory": "/root",
+    "execute-command": "/etc/hooks/trigger-teamcity-build.sh",
+    "command-working-directory": "/etc/hooks",
     "pass-arguments-to-command": [
       {
         "source": "url",
