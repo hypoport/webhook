@@ -1,6 +1,6 @@
-# webhook
+# hypoport/webhook
 
-Listens for Webhook requests
+Listens for Webhook requests and triggers TeamCity builds.
 
 # todo
 
@@ -10,16 +10,46 @@ Listens for Webhook requests
 - [x] Alles in einem Docker-Image kapseln (wie wollen wir mit Updates/temporären Downtimes des Webhooks umgehen?)
 - [x] als non-privileged User laufen lassen
 - [ ] HTTPS aktivieren
-- [ ] Webhook als Service einrichten
+- [ ] Webhook als Service einrichten - ggf. als Docker Service (Swarm), damit rolling updates unterbrechungsfrei ermöglicht werden
 
-```
-    docker run --rm -it --name webhook -p 9000:9000 --env WEBHOOK_AUTH=changeit --env WEBHOOK_SLACK_TOKEN=token -v hooks:/etc/hooks hypoport/webhook:latest
+## Usage
+
+- Prepare a Docker Volume
+ 
+Necessary only once or when changes are made on the hooks config.
+This can be skipped, but then the run command below needs to be modified accordingly. 
+
+```bash
+    docker volume create --name hooks
+    docker run --rm -v hooks:/target -v $(PWD):/source alpine:edge sh -c 'cp -a /source/* /target/'
 ```
 
+- Run the hypoport/webhook container
+
+```bash
+    docker run --rm -it \
+        --name webhook \
+        -p 9000:9000 \
+        -e WEBHOOK_AUTH=changeit \
+        -e WEBHOOK_SLACK_TOKEN=token \
+        -v hooks:/etc/hooks hypoport/webhook:latest
 ```
-    curl -X POST "http://localhost:9000/hooks/docker-hub?auth=changeit" \
+
+- Manually test the webhook (simulates a Docker Hub Webhook)
+
+```bash
+    curl -X POST "http://localhost:9000/hooks/docker-hub?tcBuildTypeId=pku_ExplorationDay_WebhookTest&auth=changeit" \
          -H "Content-Type: application/json" \
          -d@docker-hub/example-payload.json
 ```
+
+## Supported Triggers
+
+See `hooks.json` for the actual config.
+
+- From Slack: `/webhook [repo] [tag] [buildTypeId]`
+- [From Docker Hub](https://docs.docker.com/docker-hub/webhooks/)
+
+## Supported Actions
 
 - [Trigger build on teamcity via api](trigger-teamcity-build.md)
