@@ -8,7 +8,7 @@ Listens for Webhook requests and triggers TeamCity builds.
 - [x] Lauschen auf Slack messages
 - [x] Triggern eines Builds oder Deployments in TeamCity
 - [x] Absichern des Webhooks per "API-Key". Siehe dazu die Doku unter [adnanh/webhook/.../Hook-Rules.md](https://github.com/adnanh/webhook/blob/master/docs/Hook-Rules.md)
-- [x] HTTPS aktivieren
+- [x] HTTPS aktivieren -> HAProxy + Let’s Encrypt
 - [x] Alles in einem Docker-Image kapseln (wie wollen wir mit Updates/temporären Downtimes des Webhooks umgehen?)
 - [x] als non-privileged User laufen lassen (ist im Docker Container vorbereitet)
 - [ ] Webhook als Service einrichten - ggf. als Docker Service (Swarm), damit rolling updates unterbrechungsfrei ermöglicht werden
