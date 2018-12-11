@@ -21,6 +21,12 @@ Listens for Webhook requests and triggers TeamCity builds.
       hypoport/webhook:latest
 ```
 
+- Follow the webhook logs
+
+```bash
+    docker service logs -f webhook 
+```
+
 - Manually test the webhook (simulates a Docker Hub Webhook)
 
 ```bash
