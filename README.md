@@ -52,4 +52,4 @@ See `hooks.json` for the actual config.
 
 ## Supported Actions
 
-- [Trigger build on teamcity via api](trigger-teamcity-build.md)
+- [Trigger a build on TeamCity via api](trigger-teamcity-build.md)
