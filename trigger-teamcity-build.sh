@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/sh
 
 REPO=$1
 TAG=$2
