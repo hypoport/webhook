@@ -2,10 +2,6 @@
 
 Listens for Webhook requests and triggers TeamCity builds.
 
-# todo
-
-- [ ] Continuous Deployment des Webhooks einrichten (natürlich, indem er das für sich selbst triggert...)
-
 ## Usage
 
 - Run the hypoport/webhook container as a service
