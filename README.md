@@ -10,8 +10,8 @@ Listens for Webhook requests and triggers TeamCity builds.
     docker service create \
       --name webhook \
       -p 9000:9000 \
-      -e WEBHOOK_AUTH=changeit \
-      -e WEBHOOK_SLACK_TOKEN=<token> \
+      -e WEBHOOK_AUTH=<auth token> \
+      -e WEBHOOK_SLACK_TOKEN=<slack token> \
       --update-order start-first \
       hypoport/webhook:latest
 ```
