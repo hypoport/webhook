@@ -9,7 +9,7 @@ ENV WEBHOOK_VERSION=2.6.11
 
 RUN apk add --update -t build-deps curl gcc git go libc-dev libgcc mercurial
 RUN go get -a -ldflags '-s -w -extldflags "-static"' github.com/adnanh/webhook@${WEBHOOK_VERSION} \
-    /go/bin/webhook -version
+    && /go/bin/webhook -version
 
 FROM alpine:3.10
 LABEL runtime=true
