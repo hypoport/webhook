@@ -1,0 +1,12 @@
+{
+  "tcBuildTypeId": "project_subproject_producer_pactVerify",
+  "pactbroker": {
+    "eventName": "test",
+    "consumerName": "example-consumer",
+    "providerName": "example-producer",
+    "consumerVersionNumber": "1234",
+    "consumerVersionTags": "main, foo, dev",
+    "githubVerificationStatus": "pending",
+    "consumerLabels": ""
+  }
+}

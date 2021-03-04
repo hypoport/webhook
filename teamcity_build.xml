@@ -1,7 +1,8 @@
 <build>
-  <buildType id="pku_ExplorationDay_WebhookTest"/>
+  <buildType id="project_subproject_producer_pactVerify"/>
   <properties>
     <property name="repo" value="foo/bar" />
     <property name="tag" value="latest" />
+    <property name="additional_payload" value="eyJleGFtcGxlIjoidmFsdWUifQo=" />
   </properties>
 </build>

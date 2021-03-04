@@ -1,8 +1,8 @@
 #!/bin/sh
 
-REPO=$1
-TAG=$2
-BUILD_TYPE_ID=$3
+REPO="$1"
+TAG="$2"
+BUILD_TYPE_ID="$3"
 TEAMCITY_BASE_URL="http://teamcity.hypoport.local/teamCity"
 
 if [[ "$#" -eq 1 ]]

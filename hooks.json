@@ -33,6 +33,35 @@
     }
   },
   {
+    "id": "pact-verify",
+    "execute-command": "/etc/hooks/trigger-teamcity-pact-verify.sh",
+    "command-working-directory": "/etc/hooks",
+    "pass-arguments-to-command": [
+      {
+        "source": "payload",
+        "name": "tcBuildTypeId"
+      },
+      {
+        "source": "payload",
+        "name": "pactbroker"
+      }
+    ],
+    "trigger-rule": {
+      "and": [
+        {
+          "match": {
+            "type": "value",
+            "value": "{{ getenv "WEBHOOK_AUTH" | js }}",
+            "parameter": {
+              "source": "header",
+              "name": "x-authentication"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
     "id": "slack",
     "execute-command": "/etc/hooks/trigger-teamcity-build.sh",
     "command-working-directory": "/etc/hooks",

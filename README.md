@@ -36,6 +36,7 @@ See `hooks.json` for the actual config.
 
 - From Slack: `/webhook [repo] [tag] [buildTypeId]`
 - [From Docker Hub](https://docs.docker.com/docker-hub/webhooks/)
+- [From a Pact Broker](https://docs.pact.io/pact_broker/webhooks): see the _pact-verify_ directory for details
 
 ## Supported Actions
 
